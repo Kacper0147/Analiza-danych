@@ -1,0 +1,13 @@
+# Używamy lekkiego obrazu Pythona
+FROM python:3.9-slim
+
+WORKDIR /app
+
+# Kopiujemy skrypt, który będzie generował transakcje
+COPY transactions.py .
+
+# Instalujemy tylko kafka-python (do wysyłania do Kafki)
+RUN pip install kafka-python
+
+# Domyślnie uruchamiamy nasz producer
+CMD ["python", "transactions.py"]

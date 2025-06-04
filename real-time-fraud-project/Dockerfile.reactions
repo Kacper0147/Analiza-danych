@@ -1,0 +1,14 @@
+# Używamy lekkiego obrazu Pythona
+FROM python:3.9-slim
+
+WORKDIR /app
+
+# Kopiujemy skrypt przetwarzający transakcje i plik reguł
+COPY reaction_processor.py .
+COPY fraud_score_rules.json .
+
+# Instalujemy kafka-python (do konsumpcji i ewentualnego wysyłania alertów/blokad)
+RUN pip install kafka-python
+
+# Domyślnie uruchamiamy nasz konsument + logikę reakcji
+CMD ["python", "reaction_processor.py"]

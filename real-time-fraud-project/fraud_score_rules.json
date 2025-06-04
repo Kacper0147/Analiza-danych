@@ -1,0 +1,22 @@
+[
+  {
+    "rule": "foreign_country",
+    "points": 2,
+    "condition": "transaction_country != 'PL'"
+  },
+  {
+    "rule": "large_amount",
+    "points": 2,
+    "condition": "amount > 5000"
+  },
+  {
+    "rule": "night_txn",
+    "points": 1,
+    "condition": "hour(timestamp) BETWEEN 0 AND 5"
+  },
+  {
+    "rule": "freq_3_in_5min",
+    "points": 2,
+    "condition": "count_last_5min >= 3"
+  }
+]

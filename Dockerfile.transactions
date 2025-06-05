@@ -5,6 +5,7 @@ WORKDIR /app
 
 # Kopiujemy skrypt, który będzie generował transakcje
 COPY transactions.py .
+COPY fraud.py .
 
 # Instalujemy tylko kafka-python (do wysyłania do Kafki)
 RUN pip install kafka-python

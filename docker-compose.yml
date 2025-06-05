@@ -36,3 +36,29 @@ services:
       TRANSACTION_TOPIC: transactions
       ALERT_TOPIC: alerts
       BLOCK_TOPIC: blocks
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.dashboard
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+      - kafka
+
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+
+  saving:
+    build:
+      context: .
+      dockerfile: Dockerfile.saving
+    depends_on:
+      - db
+      - kafka
